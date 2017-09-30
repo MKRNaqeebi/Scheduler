@@ -1,0 +1,52 @@
+{% load common_tags %}
+{% if booking_option %}
+    <form class="form-horizontal" role="form" method="POST">
+    {% for obj in booking_option %}
+        <div class="form-group">
+            <label class="col-sm-6 control-label no-padding-right" for="{{ obj.key }}">{{ obj.title }}</label>
+            <div class="col-sm-6">
+            {% if obj.style == 'select' %}
+                <select class="form-control" class="form-control" name="{{ obj.key }}">
+                    {% split_string_colon obj.value as value_list %}
+                    {% split_string value_list.0 as my_value_list %}
+                    {% if obj.label|length > 1 %}
+                        {% zip_it obj.key as zip_list %}
+                        {% for value,lable in zip_list %}
+                            <option value="{{ value_list.0 }}{{ '::' }}{{ value }}"
+                                    {% if value == value_list.1 %}
+                                        selected="selected"
+                                    {% endif %}
+                            >
+                                    {{ lable }}
+                            </option>
+                        {% endfor %}
+                    {% else %}
+                        {% for value in my_value_list %}
+                            <option value="{{ value_list.0 }}{{ '::' }}{{ value }}"
+                                    {% if value == value_list.1 %}
+                                        selected="selected"
+                                    {% endif %}
+                            >
+                                    {{ value }}
+                            </option>
+                        {% endfor %}
+                    {% endif %}
+                </select>
+            {% endif %}
+            {% if obj.style == 'number' %}
+                <input class="form-control" type="{{ obj.style }}" name="{{ obj.key }}" value="{{ obj.value }}" />
+            {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+    {% csrf_token %}
+    <div class="form-group">
+        <div class="col-md-offset-6 col-sm-6">
+            <button class="btn btn-submit" type="submit">
+                <i class="ace-icon fa fa-check"></i>
+                Submit
+            </button>
+        </div>
+    </div>
+</form>
+{% endif %}

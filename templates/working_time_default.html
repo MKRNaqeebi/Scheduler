@@ -1,0 +1,104 @@
+{% load common_tags %}
+
+<form class="form-horizontal" action="/WorkingTimeDefault" role="form" method="POST">
+    <table class="table table-condensed">
+        <thead>
+            <tr>
+                <th>Day of week</th>
+                <th>Is Day off</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Lunch from</th>
+                <th>Lunch to</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Monday</td>
+                <td><input type="checkbox" class="form-control" name="monday_day_off" value="1"
+                {% if working_time_default.monday_day_off == True %}
+                    checked="checked"
+                {% endif %} /></td>
+                <td><input class="form-control time-picker" type="text" name="monday_from" value="{{ working_time_default.monday_from }}" /></td>
+                <td><input class="form-control time-picker" type="text" name="monday_to" value="{{ working_time_default.monday_to }}" /></td>
+                <td><input class="form-control time-picker" type="text" name="monday_lunch_from" value="{{ working_time_default.monday_lunch_from }}" /></td>
+                <td><input class="form-control time-picker" type="text" name="monday_lunch_to" value="{{ working_time_default.monday_lunch_to }}" /></td>
+            </tr>
+            <tr>
+                <td>Tuesday</td>
+                <td><input type="checkbox" class="form-control" name="tuesday_day_off" value="1"
+                {% if working_time_default.tuesday_day_off == True %}
+                    checked="checked"
+                {% endif %} /></td>
+                <td><input class="form-control time-picker" type="text" name="tuesday_from" value="{{ working_time_default.tuesday_from }}" /></td>
+                <td><input class="form-control time-picker" type="text" name="tuesday_to" value="{{ working_time_default.tuesday_to }}" /></td>
+                <td><input class="form-control time-picker" type="text" name="tuesday_lunch_from" value="{{ working_time_default.tuesday_lunch_from }}" /></td>
+                <td><input class="form-control time-picker" type="text" name="tuesday_lunch_to" value="{{ working_time_default.tuesday_lunch_to }}" /></td>
+            </tr>
+            <tr>
+                <td>Wednesday</td>
+                <td><input type="checkbox" class="form-control" name="wednesday_day_off" value="1"
+                {% if working_time_default.wednesday_day_off == True %}
+                    checked="checked"
+                {% endif %} /></td>
+                <td><input class="form-control time-picker" type="text" name="wednesday_from" value="{{ working_time_default.wednesday_from }}" /></td>
+                <td><input class="form-control time-picker" type="text" name="wednesday_to" value="{{ working_time_default.wednesday_to }}" /></td>
+                <td><input class="form-control time-picker" type="text" name="wednesday_lunch_from" value="{{ working_time_default.wednesday_lunch_from }}" /></td>
+                <td><input class="form-control time-picker" type="text" name="wednesday_lunch_to" value="{{ working_time_default.wednesday_lunch_to }}" /></td>
+            </tr>
+            <tr>
+                <td>Thursday</td>
+                <td><input type="checkbox" class="form-control" name="thursday_day_off" value="1"
+                {% if working_time_default.thursday_day_off == True %}
+                    checked="checked"
+                {% endif %} /></td>
+                <td><input class="form-control time-picker" type="text" name="thursday_from" value="{{ working_time_default.thursday_from }}" /></td>
+                <td><input class="form-control time-picker" type="text" name="thursday_to" value="{{ working_time_default.thursday_to }}" /></td>
+                <td><input class="form-control time-picker" type="text" name="thursday_lunch_from" value="{{ working_time_default.thursday_lunch_from }}" /></td>
+                <td><input class="form-control time-picker" type="text" name="thursday_lunch_to" value="{{ working_time_default.thursday_lunch_to }}" /></td>
+            </tr>
+            <tr>
+                <td>Friday</td>
+                <td><input type="checkbox" class="form-control" name="friday_day_off" value="1"
+                {% if working_time_default.friday_day_off == True %}
+                    checked="checked"
+                {% endif %} /></td>
+                <td><input class="form-control time-picker" type="text" name="friday_from" value="{{ working_time_default.friday_from }}" /></td>
+                <td><input class="form-control time-picker" type="text" name="friday_to" value="{{ working_time_default.friday_to }}" /></td>
+                <td><input class="form-control time-picker" type="text" name="friday_lunch_from" value="{{ working_time_default.friday_lunch_from }}" /></td>
+                <td><input class="form-control time-picker" type="text" name="friday_lunch_to" value="{{ working_time_default.friday_lunch_to }}" /></td>
+            </tr>
+            <tr>
+                <td>Saturday</td>
+                <td><input type="checkbox" class="form-control" name="saturday_day_off" value="1"
+                {% if working_time_default.saturday_day_off == True %}
+                    checked="checked"
+                {% endif %} /></td>
+                <td><input class="form-control time-picker" type="text" name="saturday_from" value="{{ working_time_default.saturday_from }}" /></td>
+                <td><input class="form-control time-picker" type="text" name="saturday_to" value="{{ working_time_default.saturday_to }}" /></td>
+                <td><input class="form-control time-picker" type="text" name="saturday_lunch_from" value="{{ working_time_default.saturday_lunch_from }}" /></td>
+                <td><input class="form-control time-picker" type="text" name="saturday_lunch_to" value="{{ working_time_default.saturday_lunch_to }}" /></td>
+            </tr>
+            <tr>
+                <td>Sunday</td>
+                <td><input type="checkbox" class="form-control" name="sunday_day_off" value="sunday_day_off"
+                {% if working_time_default.sunday_day_off == True %}
+                    checked="checked"
+                {% endif %} /></td>
+                <td><input class="form-control time-picker" type="text" name="sunday_from" value="{{ working_time_default.sunday_from }}" /></td>
+                <td><input class="form-control time-picker" type="text" name="sunday_to" value="{{ working_time_default.sunday_to }}" /></td>
+                <td><input class="form-control time-picker" type="text" name="sunday_lunch_from" value="{{ working_time_default.sunday_lunch_from }}" /></td>
+                <td><input class="form-control time-picker" type="text" name="sunday_lunch_to" value="{{ working_time_default.sunday_lunch_to }}" /></td>
+            </tr>
+        </tbody>
+    </table>
+    {% csrf_token %}
+    <div class="form-group">
+        <div class="col-md-offset-6 col-sm-6">
+            <button class="btn btn-submit" type="submit">
+                <i class="ace-icon fa fa-check"></i>
+                Submit
+            </button>
+        </div>
+    </div>
+</form>

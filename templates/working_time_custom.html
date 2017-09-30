@@ -1,0 +1,54 @@
+{% load common_tags %}
+<form class="form-horizontal" role="form" action="/WorkingDateDefault" method="POST">
+    <table class="table">
+        <tbody>
+            <tr>
+                <td>Date</td>
+                <td><input class="form-control date-picker" type="text" name="date" value="" data-date-format="yyyy-mm-dd" /></td>
+                <td>Is Day off</td>
+                <td><input class="form-control" type="checkbox" name="is_day_off" value="1" /></td>
+            </tr>
+            <tr>
+                <td>Start Time</td>
+                <td><input class="form-control time-picker" type="text" name="start_time" value="" /></td>
+                <td>Lunch from</td>
+                <td><input class="form-control time-picker" type="text" name="start_lunch" value="" /></td>
+            </tr>
+            <tr>
+                <td>End Time</td>
+                <td><input class="form-control time-picker" type="text" name="end_time" value="" /></td>
+                <td>Lunch to</td>
+                <td><input class="form-control time-picker" type="text" name="end_lunch" value="" /></td>
+            </tr>
+        </tbody>
+    </table>
+    {% csrf_token %}
+    <div class="form-group">
+        <div class="col-md-offset-6 col-sm-6">
+            <button class="btn btn-submit" type="submit">
+                <i class="ace-icon fa fa-check"></i>
+                Submit
+            </button>
+        </div>
+    </div>
+</form>
+<div class="row">
+    <table id="grid-table"></table>
+    <div id="grid-pager"></div>
+</div>
+<script>
+    //date, start_time, end_time, start_lunch, end_lunch,is_day_off
+    var grid_data =
+    [
+    {% if working_time_custom %}
+        {% for foo in working_time_custom %}
+        {id:"{{ foo.id }}",date:"{{ foo.date }}",start_time:"{{ foo.start_time }}",end_time:"{{ foo.end_time }}",start_lunch:"{{ foo.start_lunch }}",end_lunch:"{{ foo.end_lunch }}",is_day_off:{% if foo.is_day_off == True %}
+                "Yes"
+            {% else %}
+                "No"
+            {% endif %}},
+        {% endfor %}
+    {% endif %}
+    ];
+
+</script>
